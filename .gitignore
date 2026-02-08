@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.env
+.idea/
+.vscode/
+
+# ML
+mlruns/
+model_checkpoints/
+data/raw/
+outputs/
+*.pkl
+*.h5
+
+# OS
+.DS_Store
+Thumbs.db
