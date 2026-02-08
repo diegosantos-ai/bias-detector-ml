@@ -15,6 +15,17 @@ logger = logging.getLogger(__name__)
 def train(samples=500, test_size=0.2):
     mlflow.set_experiment("bias-detector-ml")
     
+    # Tags de Experimento
+    mlflow.set_tag("context", "hr-recruitment")
+    mlflow.set_tag("model_type", "logistic-regression")
+    mlflow.set_tag("dataset", "synthetic-v1")
+    mlflow.set_tag("framework", "scikit-learn")
+    mlflow.set_tag("developer", "diego-santos")
+    
+    # Verificar se já existe uma run ativa para evitar erro de aninhamento
+    if mlflow.active_run():
+        mlflow.end_run()
+
     with mlflow.start_run():
         # 1. Gerar Dados
         logger.info(f"Gerando {samples} amostras...")
@@ -46,9 +57,13 @@ def train(samples=500, test_size=0.2):
         mlflow.log_param("samples", samples)
         mlflow.log_param("model", "all-MiniLM-L6-v2")
         
-        # Salvar modelo
-        mlflow.sklearn.log_model(clf.clf, "model")
-        logger.info("Modelo salvo no MLflow.")
+        # Salvar modelo e registrar
+        mlflow.sklearn.log_model(
+            clf.clf, 
+            "model",
+            registered_model_name="bias-detector-ml"
+        )
+        logger.info("Modelo salvo e registrado no MLflow como 'bias-detector-ml'.")
 
 if __name__ == "__main__":
     train()
