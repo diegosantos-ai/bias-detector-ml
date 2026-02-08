@@ -1,3 +1,3 @@
 """
-Bias Detector ML Package
+Pacote de Detecção de Viés (ML)
 """
