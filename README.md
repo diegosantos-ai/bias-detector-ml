@@ -1,78 +1,78 @@
-# HR Bias Detector ML
+# Detector de Viés em RH (ML)
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
 [![MLflow](https://img.shields.io/badge/MLflow-Tracking-green)](https://mlflow.org/)
 
-Machine Learning model to detect implicit biases (gender, age, culture) in job descriptions. Built with Sentence-Transformers and tracked with MLflow.
+Modelo de Aprendizado de Máquina para detectar vieses implícitos (gênero, idade, cultura) em descrições de vagas. Construído com Sentence-Transformers e rastreado com MLflow.
 
-## 🚀 Key Features
+## 🚀 Funcionalidades Principais
 
-- **Multi-label Classification**: Detects multiple types of bias simultaneously.
-- **Explainability**: Categorizes bias type (e.g., "Ageism", "Gender Bias").
-- **MLflow Integration**: Full experiment tracking and model registry.
-- **REST API**: FastAPI endpoint for real-time analysis.
+- **Classificação Multi-rótulo**: Detecta múltiplos tipos de viés simultaneamente.
+- **Explicabilidade**: Categoriza o tipo de viés (ex: "Etarismo", "Viés de Gênero").
+- **Integração com MLflow**: Rastreamento completo de experimentos e registro de modelos.
+- **API REST**: Endpoint FastAPI para análise em tempo real.
 
-## 🛠️ Stack
+## 🛠️ Tecnologias
 
 - **ML**: `scikit-learn`, `sentence-transformers`
 - **Ops**: `mlflow`, `docker`
 - **API**: `fastapi`
 
-## 📦 Installation
+## 📦 Instalação
 
 ```bash
-# Clone
-git clone https://github.com/yourusername/bias-detector-ml.git
+# Clonar
+git clone https://github.com/seususuario/bias-detector-ml.git
 cd bias-detector-ml
 
-# Env
+# Ambiente Virtual
 python -m venv .venv
 # Linux/Mac
 source .venv/bin/activate
 # Windows
 .venv\Scripts\activate
 
-# Deps
+# Dependências
 pip install -r requirements.txt
 ```
 
-## 🏃‍♂️ Quick Start
+## 🏃‍♂️ Início Rápido
 
-1. **Start MLflow (Optional)**
+1. **Iniciar MLflow (Opcional)**
    ```bash
    mlflow ui --port 5001
    ```
 
-2. **Train Model**
+2. **Treinar Modelo**
    ```bash
-   # Generates synthetic data and trains the model
+   # Gera dados sintéticos e treina o modelo
    python -m src.train
    ```
-   *Note: First run will download the embedding model (80MB).*
+   *Nota: A primeira execução fará o download do modelo de embeddings (80MB).*
 
-3. **Run API**
+3. **Executar API**
    ```bash
    uvicorn src.api.app:app --reload
    ```
-   Access docs at: http://localhost:8000/docs
+   Acesse a documentação em: http://localhost:8000/docs
 
-## 🧪 Testing
+## 🧪 Testes
 
 ```bash
-# Run unit tests
+# Executar testes unitários
 pytest tests/
 ```
 
-## 📂 Project Structure
+## 📂 Estrutura do Projeto
 
 ```
 bias-detector-ml/
 ├── src/
-│   ├── api/            # API endpoints
-│   ├── data/           # Data generation
-│   ├── ml/             # ML pipeline
-│   └── train.py        # Training script
-├── tests/              # Unit tests
+│   ├── api/            # Endpoints da API
+│   ├── data/           # Geração de dados
+│   ├── ml/             # Pipeline de ML
+│   └── train.py        # Script de treinamento
+├── tests/              # Testes unitários
 ├── requirements.txt
 └── README.md
 ```

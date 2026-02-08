@@ -1,11 +1,11 @@
 """
-Data generation module using wordlists and templates.
+Módulo de geração de dados usando listas de palavras e modelos (templates).
 """
 import random
 import pandas as pd
 from typing import List, Dict
 
-# Wordlists
+# Listas de palavras
 GENDER_BIASED = [
     "ninja", "rockstar", "guerreiro", "campeão", "dominador",
     "agressivo", "ambicioso", "competitivo", "líder nato"
@@ -41,36 +41,36 @@ TEMPLATES = [
 
 def generate_synthetic_data(samples: int = 500) -> pd.DataFrame:
     """
-    Generate synthetic dataset for bias detection.
+    Gera conjunto de dados sintético para detecção de viés.
     
-    Returns:
-        pd.DataFrame with columns ['text', 'gender', 'age', 'culture']
+    Retorna:
+        pd.DataFrame com colunas ['text', 'gender', 'age', 'culture']
     """
     data = []
     
     for _ in range(samples):
-        # Decide bias types for this sample (randomly)
+        # Decidir tipos de viés para esta amostra (aleatoriamente)
         has_gender = random.random() < 0.3
         has_age = random.random() < 0.3
         has_culture = random.random() < 0.3
         
-        # Select term based on bias
+        # Selecionar termo baseado no viés
         terms = []
         if has_gender: terms.append(random.choice(GENDER_BIASED))
         if has_age: terms.append(random.choice(AGE_BIASED))
         if has_culture: terms.append(random.choice(CULTURE_BIASED))
         
-        # If no bias, select neutral term
+        # Se não houver viés, selecionar termo neutro
         if not terms:
             term = random.choice(NEUTRAL_TERMS)
         else:
             term = " e ".join(terms)
         
-        # Generate text
+        # Gerar texto
         template = random.choice(TEMPLATES)
         text = template.format(term=term)
         
-        # Append
+        # Adicionar
         data.append({
             "text": text,
             "gender": 1 if has_gender else 0,
